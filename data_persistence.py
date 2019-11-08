@@ -1,24 +1,17 @@
 import pyodbc
+import pandas as pd
+from sqlalchemy import create_engine
 
-username = ""
-password = ""
-dbname = ""
-servername = ""
-connection_string = 'Driver={ODBC Driver 17 for SQL Server};Server=' + servername + ',1433;Database=' + dbname + ';Uid=' + username + ';Pwd=' + password + ';'
+username = "{username}"
+password = "{password}"
+dbname = "{database name}"
+servername = "{sub-server name}.database.windows.net"
 
-conn = pyodbc.connect(connection_string,autocommit=True)
-curs = conn.cursor()
+OutputDataSet = pd.read_excel(r"USIncomeAndConsumptionData.xlsx", sheet_name='Personal Income')
+eng = create_engine('mssql+pyodbc://{username}:{password}@{sub-server name}.database.windows.net:1433/{Database Name}?Driver={ODBC Driver 17 for SQL Server}', echo=True)
+OutputDataSet.to_sql('PersonalIncome', eng, index=False)
 
-curs.execute(
-    '''
-     create table someDataSet(
-     ID int primary key clustered identity(1,1)
-     , attribute1 datatype
-     , attribute2 datatype 
-     )
-    '''
 
-     )
 '''
 #Answer the following Questions
 1) Which database will you be using for your final project? (e.g.SQL Server, MongoDB, Other...) (5pts)
@@ -52,6 +45,9 @@ $200 credit to spend on azure services for the first 30 days of sign up..!!
 
 *3) Describe the schema you will use in your database.If it is a relational database (e.g.SQL Server),
 *share your table schema, if it is a document store (e.g.MongoDB) then share a sample JSON file that represents the data you intend to store.(10 pts)
+
+#See this link to a google doc for set up, connectivity, and Schema documentation:
+#https://docs.google.com/document/d/1x-miheEwS117rHvd79nWjIZmdmGgwtxQxCG2x7IPiqY/edit?usp=sharing
 '''
 
 

@@ -16,4 +16,4 @@ curs.execute(
 OutputDataSet = pd.read_excel(r"C:\\Users\\K\\Desktop\\USIncomeAndConsumptionData.xlsx", sheet_name='Personal Income')
 
 eng = create_engine('mssql+pyodbc://kristensohm:Gidferd7*@gidferd.database.windows.net:1433/MIS5400?Driver={ODBC Driver 17 for SQL Server}', echo=True)
-OutputDataSet.to_sql('PersonalIncome', eng, index=False);
+OutputDataSet.to_sql('PersonalIncome', eng, index=False); 

@@ -1,22 +1,20 @@
 # Use an official Python runtime as a parent image
-FROM python:slim
+FROM laudio/pyodbc:1.0.4
 
 # Set the working directory to / app
-WORKDIR .
+WORKDIR /app
 
 # Copy the current directory contents into the container at / app
-ADD . /app
+ADD *.py /app/
+ADD *.sh /app/
 ADD requirements.txt /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r ./app/requirements.txt
+RUN pip install --trusted-host pypi.python.org -r /app/requirements.txt
 
-# Make port 80 available to the world outside this container
-EXPOSE 443
-
-# Define environment variable
-ENV NAME World
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
 
 # Run app.py when the container launches
-# CMD ["python", "flask-api.py"]
-CMD ["ls -al"]
+ENTRYPOINT [ "python" ]
+CMD ["flask_api.py"]

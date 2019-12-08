@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at / app
 ADD *.py /app/
-ADD *.sh /app/
 ADD requirements.txt /app
 
 # Install any needed packages specified in requirements.txt

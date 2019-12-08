@@ -47,7 +47,7 @@ def get_income():
 # Gets the data from the consumption (expenses) table
 @app.route("/api/v1/expenses", methods=['GET'])
 def get_expenses():
-    query = "SELECT * FROM ['ConsumptionByProduct']"
+    query = "SELECT * FROM ConsumptionByProduct"
     results = engine.execute(query)
     return json.dumps([dict(r) for r in results], default=alchemyencoder)
 
